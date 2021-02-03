@@ -1,5 +1,6 @@
+import 'package:assets_to_ui/database/database.dart';
 import 'package:assets_to_ui/models/models.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class LoadJson {
   static final LoadJson _singleton = LoadJson._();
@@ -7,12 +8,15 @@ class LoadJson {
   LoadJson._();
 
   Future<String> loadHome(String root) async {
-    print(root);
     return await rootBundle.loadString("assets/json/${root}.json");
   }
 
   Future loadContent() async {
-    List<Content> home = HomeFromJson(await loadHome("home"));
+    List<Content> home = HomeFromJson(await loadHome("data"));
     print(home);
+
+    for (int i = 0; i < home.length; i++) {
+      await dbLogic.insert(home[0].home[i]);
+    }
   }
 }

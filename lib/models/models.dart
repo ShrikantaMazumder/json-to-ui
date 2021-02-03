@@ -6,17 +6,17 @@ List<Content> HomeFromJson(String str) {
 }
 
 class Content {
-  List home;
+  List<Home> home;
   Content({
     this.home,
   });
 
-  factory Content.fromJson(String str) => Content.fromJson(jsonDecode(str));
+  factory Content.fromJson(String str) => Content.fromMap(jsonDecode(str));
 
   String toJson() => jsonEncode(toMap());
 
   factory Content.fromMap(Map<String, dynamic> json) => new Content(
-        home: new List<Home>.from(json["home"].map((x) => x.toMap())),
+        home: new List<Home>.from(json["home"].map((x) => Home.fromMap(x))),
       );
   Map<String, dynamic> toMap() => {
         "home": new List<dynamic>.from(home.map((e) => e.toMap())),

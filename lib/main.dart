@@ -1,3 +1,4 @@
+import 'package:assets_to_ui/database/database.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // LoadJson.instance.loadContent();
+    getAllHome();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,5 +40,10 @@ class MyHomePage extends StatelessWidget {
         title: Text('JSON DATA CONVERT'),
       ),
     );
+  }
+
+  void getAllHome() async {
+    final data = await dbLogic.getAllHome();
+    print(data);
   }
 }
