@@ -1,5 +1,13 @@
 import 'dart:convert';
 
+enum HomeState {
+  GETALL,
+  INSERT,
+  UPDATE,
+  DELETE,
+  DELETEALL,
+  NOPE,
+}
 List<Content> HomeFromJson(String str) {
   final jsonData = jsonDecode(str);
   return new List<Content>.from(jsonData.map((x) => Content.fromMap(x)));
@@ -28,12 +36,14 @@ class Home {
   String name;
   String email;
   String desc;
+  HomeState state;
 
   Home({
     this.id,
     this.name,
     this.email,
     this.desc,
+    this.state,
   });
 
   factory Home.fromJson(String str) => Home.fromMap(jsonDecode(str));

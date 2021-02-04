@@ -23,6 +23,11 @@ class DBLogic {
     await _home.delete(await db, finder: finder);
   }
 
+  Future deleteAll() async {
+    await _home.delete(await db);
+    // await LoadJson.instance.loadContent();
+  }
+
   Future<List<Home>> getAllHome() async {
     final snapshot = await _home.find(await db);
     return snapshot.map((e) {

@@ -13,9 +13,7 @@ class LoadJson {
 
   Future loadContent() async {
     List<Content> home = HomeFromJson(await loadHome("data"));
-    print(home);
-
-    for (int i = 0; i < home.length; i++) {
+    for (int i = 0; i < home[0].home.length; i++) {
       await dbLogic.insert(home[0].home[i]);
     }
   }
